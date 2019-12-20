@@ -2,9 +2,11 @@ package top.xinzhang0618.producer;
 
 import java.time.LocalDateTime;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
+import top.xinzhang0618.producer.service.Sender;
 
 /**
  * Test
@@ -17,11 +19,11 @@ import org.junit.Test;
 @RunWith(SpringRunner.class)
 public class ProducerTest {
 
-  @Test
-  public void test() {
-    LocalDateTime d1 = LocalDateTime.of(2019, 12, 12, 12, 12);
-    LocalDateTime d2 = LocalDateTime.of(2019, 12, 12, 12, 12);
+  @Autowired
+  private Sender sender;
 
-    System.out.println(d1.isBefore(d2));
+  @Test
+  public void testSendMessage() {
+    sender.sendMessage();
   }
 }

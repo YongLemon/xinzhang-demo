@@ -1,4 +1,4 @@
-package top.xinzhang0618.producer;
+package top.xinzhang0618.domain.mq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

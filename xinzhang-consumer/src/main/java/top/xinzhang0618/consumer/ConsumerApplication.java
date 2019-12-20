@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Shenzhen Greatonce Co Ltd
  * @version 2019/12/19
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "top.xinzhang0618")
 public class ConsumerApplication {
 
   public static void main(String[] args) {

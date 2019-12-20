@@ -10,6 +10,7 @@
   <modules>
     <module>xinzhang-producer</module>
     <module>xinzhang-consumer</module>
+    <module>xinzhang-domain</module>
   </modules>
   <groupId>top.xinzhang0618</groupId>
   <artifactId>xinzhang-demo</artifactId>
@@ -41,6 +42,21 @@
         <version>2.1.3.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>top.xinzhang0618</groupId>
+        <artifactId>xinzhang-producer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>top.xinzhang0618</groupId>
+        <artifactId>xinzhang-consumer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>top.xinzhang0618</groupId>
+        <artifactId>xinzhang-domain</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
