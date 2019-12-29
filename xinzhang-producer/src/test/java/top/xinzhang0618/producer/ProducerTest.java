@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
+import top.xinzhang0618.producer.design.observer.java.Display1;
+import top.xinzhang0618.producer.design.observer.java.Display2;
+import top.xinzhang0618.producer.design.observer.java.WeatherData;
 import top.xinzhang0618.producer.design.strategy.FlyDown;
 import top.xinzhang0618.producer.design.strategy.MallardDuck;
 import top.xinzhang0618.producer.thread.BizContext;
@@ -36,9 +39,14 @@ public class ProducerTest {
 
   @Test
   public void testStrategy() {
-    MallardDuck mallardDuck = new MallardDuck();
-    mallardDuck.performFly();
-    mallardDuck.setFlyBehavior(new FlyDown());
-    mallardDuck.performFly();
+    WeatherData weatherData = new WeatherData();
+    weatherData.setTemp("12度");
+    Display1 display1 = new Display1(weatherData);
+    Display2 display2 = new Display2(weatherData);
+    display1.display();
+    display2.display();
+    weatherData.tempChange("20度");
+    display1.display();
+    display2.display();
   }
 }
