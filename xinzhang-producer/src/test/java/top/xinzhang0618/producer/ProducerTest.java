@@ -7,6 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
+import top.xinzhang0618.producer.design.decorator.DarkRoust;
+import top.xinzhang0618.producer.design.decorator.HouseBlend;
+import top.xinzhang0618.producer.design.decorator.Milk;
+import top.xinzhang0618.producer.design.decorator.Soy;
 import top.xinzhang0618.producer.design.observer.java.Display1;
 import top.xinzhang0618.producer.design.observer.java.Display2;
 import top.xinzhang0618.producer.design.observer.java.WeatherData;
@@ -48,5 +52,22 @@ public class ProducerTest {
     weatherData.tempChange("20度");
     display1.display();
     display2.display();
+  }
+
+  @Test
+  public void testDecorator() {
+    //darkRoust成本10,houseBlend成本20
+    //milk成本1,soy成本2
+
+    // darkRoust加milk和soy
+    DarkRoust darkRoust = new DarkRoust();
+    Milk milk = new Milk(darkRoust);
+    Soy soy = new Soy(milk);
+    System.out.println("darkRoust的成本为: " + milk.cost());
+
+    // houseBlend只加soy
+    HouseBlend houseBlend = new HouseBlend();
+    Soy soy1 = new Soy(houseBlend);
+    System.out.println("houseBlend的成本为: " + soy.cost());
   }
 }
