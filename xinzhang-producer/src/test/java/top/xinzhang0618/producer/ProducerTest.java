@@ -1,6 +1,7 @@
 package top.xinzhang0618.producer;
 
 import com.alibaba.ttl.TtlRunnable;
+import java.io.FileInputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.junit.runner.RunWith;
