@@ -11,6 +11,7 @@
     <module>xinzhang-producer</module>
     <module>xinzhang-consumer</module>
     <module>xinzhang-domain</module>
+    <module>xinzhang-business</module>
   </modules>
   <groupId>top.xinzhang0618</groupId>
   <artifactId>xinzhang-demo</artifactId>

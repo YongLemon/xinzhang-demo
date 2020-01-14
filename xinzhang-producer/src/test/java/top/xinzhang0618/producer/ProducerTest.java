@@ -1,12 +1,19 @@
 package top.xinzhang0618.producer;
 
 import com.alibaba.ttl.TtlRunnable;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.junit.runner.RunWith;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
+import top.xinzhang0618.producer.design.command.Light;
+import top.xinzhang0618.producer.design.command.LightOnCommand;
+import top.xinzhang0618.producer.design.command.SimpleRemoteControl;
 import top.xinzhang0618.producer.design.decorator.DarkRoust;
 import top.xinzhang0618.producer.design.decorator.HouseBlend;
 import top.xinzhang0618.producer.design.decorator.Milk;
@@ -69,5 +76,37 @@ public class ProducerTest {
     HouseBlend houseBlend = new HouseBlend();
     Soy soy1 = new Soy(houseBlend);
     System.out.println("houseBlend的成本为: " + soy.cost());
+  }
+
+  @Test
+  public void test11() {
+    LocalTime beginTime = LocalTime.of(6, 0);
+    LocalTime endTime = LocalTime.of(19, 0);
+    LocalDateTime testTime = LocalDateTime.now();
+    LocalTime test = LocalTime.of(testTime.getHour(), 0);
+    if ((test.isAfter(beginTime) || test.equals(beginTime)) && test.isBefore(endTime)) {
+      System.out.println("在拦截时间内");
+    }
+
+  }
+
+  @Test
+  public void test12() {
+    LocalTime beginTime = LocalTime.of(15, 0);
+    LocalTime endTime = LocalTime.of(8, 0);
+    LocalDateTime testTime = LocalDateTime.now().plusHours(10L);
+    LocalTime test = LocalTime.of(testTime.getHour(), 0);
+    boolean b = (test.isAfter(endTime) || test.equals(endTime)) && test.isBefore(beginTime);
+    if (!b) {
+      System.out.println("在拦截时间内");
+    }
+  }
+
+  @Test
+  public void testCommand() {
+    LightOnCommand command = new LightOnCommand(new Light());
+    SimpleRemoteControl control = new SimpleRemoteControl();
+    control.setCommand(command);
+    control.buttonWasPressed();
   }
 }
