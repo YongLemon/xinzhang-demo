@@ -11,6 +11,9 @@ import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
+import top.xinzhang0618.producer.design.Adapter.Turkey;
+import top.xinzhang0618.producer.design.Adapter.TurkeyAdapter;
+import top.xinzhang0618.producer.design.Adapter.WildTurkey;
 import top.xinzhang0618.producer.design.command.Light;
 import top.xinzhang0618.producer.design.command.LightOnCommand;
 import top.xinzhang0618.producer.design.command.SimpleRemoteControl;
@@ -108,5 +111,12 @@ public class ProducerTest {
     SimpleRemoteControl control = new SimpleRemoteControl();
     control.setCommand(command);
     control.buttonWasPressed();
+  }
+
+  @Test
+  public void testAdapter() {
+    TurkeyAdapter adapter = new TurkeyAdapter(new WildTurkey());
+    adapter.quack();
+    adapter.fly();
   }
 }
