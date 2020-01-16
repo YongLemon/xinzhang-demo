@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Pattern;
 import org.junit.runner.RunWith;
 import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -118,5 +119,13 @@ public class ProducerTest {
     TurkeyAdapter adapter = new TurkeyAdapter(new WildTurkey());
     adapter.quack();
     adapter.fly();
+  }
+
+  private static final Pattern MOBILE_PATTERN = Pattern.compile("1[3456789]\\d{9}");
+
+
+  @Test
+  public void testRegex(){
+
   }
 }
