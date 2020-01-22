@@ -21,6 +21,8 @@ import top.xinzhang0618.producer.design.iterator.Waitress;
 import top.xinzhang0618.producer.design.observer.java.Display1;
 import top.xinzhang0618.producer.design.observer.java.Display2;
 import top.xinzhang0618.producer.design.observer.java.WeatherData;
+import top.xinzhang0618.producer.design.state.GumballMachine;
+import top.xinzhang0618.producer.design.state.Machine;
 
 /**
  * DesignTest
@@ -97,5 +99,18 @@ public class DesignTest {
     menu.add(new top.xinzhang0618.producer.design.composite.MenuItem("鱼肉"));
     menu.add(new top.xinzhang0618.producer.design.composite.MenuItem("鸡肉"));
 
+  }
+
+  @Test
+  public void testState() {
+//    GumballMachine machine = new GumballMachine(3);
+    Machine machine = new Machine(10);
+    machine.insertCoin();
+    machine.turnCrack();
+    machine.dispense();
+    machine.ejectCoin();
+    machine.dispense();
+    machine.turnCrack();
+    machine.insertCoin();
   }
 }
