@@ -9,10 +9,15 @@ import top.xinzhang0618.producer.design.Adapter.WildTurkey;
 import top.xinzhang0618.producer.design.command.Light;
 import top.xinzhang0618.producer.design.command.LightOnCommand;
 import top.xinzhang0618.producer.design.command.SimpleRemoteControl;
+import top.xinzhang0618.producer.design.composite.Menu;
 import top.xinzhang0618.producer.design.decorator.DarkRoust;
 import top.xinzhang0618.producer.design.decorator.HouseBlend;
 import top.xinzhang0618.producer.design.decorator.Milk;
 import top.xinzhang0618.producer.design.decorator.Soy;
+import top.xinzhang0618.producer.design.iterator.DinerMenu;
+import top.xinzhang0618.producer.design.iterator.MenuItem;
+import top.xinzhang0618.producer.design.iterator.PancakeHouseMenu;
+import top.xinzhang0618.producer.design.iterator.Waitress;
 import top.xinzhang0618.producer.design.observer.java.Display1;
 import top.xinzhang0618.producer.design.observer.java.Display2;
 import top.xinzhang0618.producer.design.observer.java.WeatherData;
@@ -27,6 +32,7 @@ import top.xinzhang0618.producer.design.observer.java.WeatherData;
 @SpringBootTest(classes = ProducerApplication.class)
 @RunWith(SpringRunner.class)
 public class DesignTest {
+
   @Test
   public void testStrategy() {
     WeatherData weatherData = new WeatherData();
@@ -70,5 +76,26 @@ public class DesignTest {
     TurkeyAdapter adapter = new TurkeyAdapter(new WildTurkey());
     adapter.quack();
     adapter.fly();
+  }
+
+  @Test
+  public void testIterator() {
+    Waitress waitress = new Waitress(new PancakeHouseMenu(), new DinerMenu());
+    waitress.printMenu();
+  }
+
+  @Test
+  public void testComposite() {
+    top.xinzhang0618.producer.design.composite.MenuItem menuItem1 = new top.xinzhang0618.producer.design.composite.MenuItem(
+        "黄瓜");
+    top.xinzhang0618.producer.design.composite.MenuItem menuItem2 = new top.xinzhang0618.producer.design.composite.MenuItem(
+        "土豆");
+    top.xinzhang0618.producer.design.composite.MenuItem menuItem3 = new top.xinzhang0618.producer.design.composite.MenuItem(
+        "包菜");
+
+    Menu menu = new Menu("肉类");
+    menu.add(new top.xinzhang0618.producer.design.composite.MenuItem("鱼肉"));
+    menu.add(new top.xinzhang0618.producer.design.composite.MenuItem("鸡肉"));
+
   }
 }
