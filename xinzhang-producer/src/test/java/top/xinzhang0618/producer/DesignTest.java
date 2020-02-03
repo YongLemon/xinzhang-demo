@@ -1,5 +1,6 @@
 package top.xinzhang0618.producer;
 
+import java.lang.reflect.Proxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,9 @@ import top.xinzhang0618.producer.design.iterator.Waitress;
 import top.xinzhang0618.producer.design.observer.java.Display1;
 import top.xinzhang0618.producer.design.observer.java.Display2;
 import top.xinzhang0618.producer.design.observer.java.WeatherData;
+import top.xinzhang0618.producer.design.proxy.OwnerInvocationHandler;
+import top.xinzhang0618.producer.design.proxy.PersonBean;
+import top.xinzhang0618.producer.design.proxy.PersonBeanImpl;
 import top.xinzhang0618.producer.design.state.GumballMachine;
 import top.xinzhang0618.producer.design.state.Machine;
 
@@ -112,5 +116,25 @@ public class DesignTest {
     machine.dispense();
     machine.turnCrack();
     machine.insertCoin();
+  }
+
+  @Test
+  public void testProxy() {
+    PersonBeanImpl personBean = new PersonBeanImpl("小王", 9);
+    PersonBean ownerProxy = getOwnerProxy(personBean);
+    System.out.println(ownerProxy.getName());
+    System.out.println(ownerProxy.getRate());
+    ownerProxy.setName("小张");
+    System.out.println(ownerProxy.getName());
+    try {
+      ownerProxy.setRate(1);
+    } catch (Exception e) {
+      System.out.println("不能设置自己的分数!");
+    }
+  }
+
+  private PersonBean getOwnerProxy(PersonBean person) {
+    return (PersonBean) Proxy.newProxyInstance(person.getClass().getClassLoader(), person.getClass().getInterfaces(),
+        new OwnerInvocationHandler(person));
   }
 }
