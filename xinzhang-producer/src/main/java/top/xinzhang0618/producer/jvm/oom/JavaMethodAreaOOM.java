@@ -1,4 +1,4 @@
-package top.xinzhang0618.producer.jvm;
+package top.xinzhang0618.producer.jvm.oom;
 
 import java.lang.reflect.Method;
 import org.springframework.cglib.proxy.Enhancer;
